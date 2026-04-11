@@ -29,3 +29,4 @@ def test_entrada_invalida_valor_negativo():
 def test_caso_limite_soma_vazia():
     """Teste 3: Verificação do total quando não há gastos."""
     assert app.calcular_total() == 0
+    
