@@ -55,7 +55,7 @@ def menu():
         elif opcao == '2':
             gastos = carregar_gastos()
             print("\n--- LISTA DE GASTOS ---")
-            if not gastos: 
+            if not gastos:
                 print("Nenhum gasto registrado.")
             for g in gastos:
                 print(f"• {g['descricao']}: R$ {g['valor']:.2f}")
