@@ -62,7 +62,7 @@ def menu():
         elif opcao == '3':
             print(f"\n TOTAL GERAL: R$ {calcular_total():.2f}")
         elif opcao == '4':
-            print("Encerrando... Até logo!")
+            print("Encerrando...")
             break
         else:
             print(" Opção inválida.")
