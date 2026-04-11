@@ -22,3 +22,4 @@ def test_adicionar_e_carregar_gasto():
     salvar_gastos(dados)
     carregados = carregar_gastos()
     assert carregados[0]["descricao"] == "Teste"
+    
