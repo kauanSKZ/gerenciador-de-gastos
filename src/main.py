@@ -4,6 +4,7 @@ import os
 __version__ = "1.0.0"
 ARQUIVO_DADOS = "gastos.json"
 
+
 def carregar_gastos():
     if not os.path.exists(ARQUIVO_DADOS):
         return []
@@ -13,9 +14,11 @@ def carregar_gastos():
     except (json.JSONDecodeError, IOError):
         return []
 
+
 def salvar_gastos(gastos):
     with open(ARQUIVO_DADOS, 'w', encoding='utf-8') as f:
         json.dump(gastos, f, indent=4, ensure_ascii=False)
+
 
 def adicionar_gasto(descricao, valor):
     if not descricao.strip():
@@ -27,13 +30,15 @@ def adicionar_gasto(descricao, valor):
     salvar_gastos(gastos)
     return True
 
+
 def calcular_total():
     gastos = carregar_gastos()
     return sum(item['valor'] for item in gastos)
 
+
 def menu():
     while True:
-        print(f"\n=== GERENCIADOR DE GASTOS v{__version__} ===")
+        print(f"\n=== GERENCIADOR DE GASTOS v{__version__}===")
         print("1. Adicionar Novo Gasto")
         print("2. Listar Todos os Gastos")
         print("3. Exibir Total Acumulado")
@@ -62,6 +67,7 @@ def menu():
             break
         else:
             print(" Opção inválida.")
+
 
 if __name__ == "__main__":
     menu()
