@@ -14,10 +14,12 @@ def gerenciar_arquivo_teste():
         os.remove("test_gastos.json")
 
 
+
 def test_caminho_feliz_adicionar_gasto():
     """Teste 1: Adição correta de um gasto."""
     assert app.adicionar_gasto("Internet", 100.0) is True
     assert len(app.carregar_gastos()) == 1
+
 
 
 def test_entrada_invalida_valor_negativo():
@@ -26,7 +28,7 @@ def test_entrada_invalida_valor_negativo():
         app.adicionar_gasto("Erro", -50.0)
 
 
+
 def test_caso_limite_soma_vazia():
     """Teste 3: Verificação do total quando não há gastos."""
     assert app.calcular_total() == 0
-    
