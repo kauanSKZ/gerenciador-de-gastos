@@ -3,6 +3,7 @@ import os
 import src.main as app
 
 @pytest.fixture(autouse=True)
+
 def gerenciar_arquivo_teste():
     """Configura arquivo de teste e limpa após o uso."""
     app.ARQUIVO_DADOS = "test_gastos.json"

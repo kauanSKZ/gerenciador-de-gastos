@@ -22,7 +22,6 @@ def adicionar_gasto(descricao, valor):
         raise ValueError("A descrição não pode estar vazia.")
     if valor <= 0:
         raise ValueError("O valor deve ser maior que zero.")
-    
     gastos = carregar_gastos()
     gastos.append({"descricao": descricao, "valor": valor})
     salvar_gastos(gastos)
@@ -39,7 +38,6 @@ def menu():
         print("2. Listar Todos os Gastos")
         print("3. Exibir Total Acumulado")
         print("4. Sair")
-        
         opcao = input("\nEscolha uma opção: ")
         
         if opcao == '1':
@@ -53,7 +51,8 @@ def menu():
         elif opcao == '2':
             gastos = carregar_gastos()
             print("\n--- LISTA DE GASTOS ---")
-            if not gastos: print("Nenhum gasto registrado.")
+            if not gastos: 
+                print("Nenhum gasto registrado.")
             for g in gastos:
                 print(f"• {g['descricao']}: R$ {g['valor']:.2f}")
         elif opcao == '3':
