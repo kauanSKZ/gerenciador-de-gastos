@@ -44,7 +44,6 @@ def menu():
         print("3. Exibir Total Acumulado")
         print("4. Sair")
         opcao = input("\nEscolha uma opção: ")
-        
         if opcao == '1':
             desc = input("Descrição do gasto: ")
             try:
