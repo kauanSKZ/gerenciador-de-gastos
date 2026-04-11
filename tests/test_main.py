@@ -25,4 +25,3 @@ def test_entrada_invalida_valor_negativo():
 
 def test_caso_limite_soma_vazia():
     assert app.calcular_total() == 0
-    
