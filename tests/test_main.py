@@ -1,25 +1,28 @@
 import pytest
 import os
-from src.main import carregar_gastos, salvar_gastos
+import src.main as app
 
 
 @pytest.fixture(autouse=True)
 def gerenciar_arquivo_teste():
-    if os.path.exists('gastos.json'):
-        os.remove('gastos.json')
+    app.ARQUIVO_DADOS = "test_gastos.json"
+    if os.path.exists("test_gastos.json"):
+        os.remove("test_gastos.json")
     yield
-    if os.path.exists('gastos.json'):
-        os.remove('gastos.json')
+    if os.path.exists("test_gastos.json"):
+        os.remove("test_gastos.json")
 
 
-def test_lista_vazia_ao_iniciar():
-    gastos = carregar_gastos()
-    assert len(gastos) == 0
+def test_caminho_feliz_adicionar_gasto():
+    assert app.adicionar_gasto("Internet", 100.0) is True
+    assert len(app.carregar_gastos()) == 1
 
 
-def test_adicionar_e_carregar_gasto():
-    dados = [{"descricao": "Teste", "valor": 10.0}]
-    salvar_gastos(dados)
-    carregados = carregar_gastos()
-    assert carregados[0]["descricao"] == "Teste"
+def test_entrada_invalida_valor_negativo():
+    with pytest.raises(ValueError, match="O valor deve ser maior que zero"):
+        app.adicionar_gasto("Erro", -50.0)
+
+
+def test_caso_limite_soma_vazia():
+    assert app.calcular_total() == 0
     
