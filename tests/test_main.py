@@ -1,18 +1,15 @@
+import pytest
+import os
+import src.main as app
 from src.main import obter_cotacao_dolar
 
 
 def test_integracao_api_cotacao():
     """Testa se a aplicação consegue se comunicar com a API de cotação."""
     cotacao = obter_cotacao_dolar()
-    
     assert cotacao is not None
     assert isinstance(cotacao, float)
-    assert cotacao >0
-
-
-import pytest
-import os
-import src.main as app
+    assert cotacao > 0
 
 
 @pytest.fixture(autouse=True)
