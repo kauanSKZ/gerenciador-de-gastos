@@ -76,7 +76,8 @@ def menu():
             cotacao = obter_cotacao_dolar()
             if cotacao:
                 total_dolar = calcular_total() / cotacao
-                print(f" TOTAL EM DÓLAR: US$ {total_dolar:.2f} (Cotação: R$ {cotacao:.2f})")
+                print(f" TOTAL EM DÓLAR: US$ {total_dolar:.2f} "
+                      f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
         elif opcao == '4':
