@@ -25,3 +25,14 @@ def test_entrada_invalida_valor_negativo():
 
 def test_caso_limite_soma_vazia():
     assert app.calcular_total() == 0
+
+
+from src.main import obter_cotacao_dolar
+
+def test_integracao_api_cotacao():
+    """Testa se a aplicação consegue se comunicar com a API de cotação."""
+    cotacao = obter_cotacao_dolar()
+    
+    assert cotacao is not None
+    assert isinstance(cotacao, float)
+    assert cotacao > 0
