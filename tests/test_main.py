@@ -1,6 +1,21 @@
+from unittest.mock import patch
 import pytest
 import os
 import src.main as app
+from src.main import obter_cotacao_dolar
+
+
+@patch("src.main.requests.get")
+def test_integracao_api_cotacao(mock_get):
+    """Testa se a aplicação consegue lidar com a chamada de cotação."""
+    mock_get.return_value.status_code = 200
+    mock_get.return_value.json.return_value = {"USDBRL": {"bid": "5.10"}}
+
+    cotacao = obter_cotacao_dolar()
+
+    assert cotacao is not None
+    assert isinstance(cotacao, float)
+    assert cotacao > 0
 
 
 @pytest.fixture(autouse=True)

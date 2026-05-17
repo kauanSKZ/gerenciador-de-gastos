@@ -1,3 +1,4 @@
+import requests
 import json
 import os
 
@@ -36,6 +37,17 @@ def calcular_total():
     return sum(item['valor'] for item in gastos)
 
 
+def obter_cotacao_dolar():
+    try:
+        resposta = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL")
+        resposta.raise_for_status()
+        dados = resposta.json()
+        cotacao = float(dados["USDBRL"]["bid"])
+        return cotacao
+    except Exception:
+        return None
+
+
 def menu():
     while True:
         print(f"\n=== GERENCIADOR DE GASTOS v{__version__}===")
@@ -61,6 +73,13 @@ def menu():
                 print(f"• {g['descricao']}: R$ {g['valor']:.2f}")
         elif opcao == '3':
             print(f"\n TOTAL GERAL: R$ {calcular_total():.2f}")
+            cotacao = obter_cotacao_dolar()
+            if cotacao:
+                total_dolar = calcular_total() / cotacao
+                print(f" TOTAL EM DÓLAR: US$ {total_dolar:.2f} "
+                      f"(Cotação: R$ {cotacao:.2f})")
+            else:
+                print(" [Aviso: Cotação do dólar indisponível no momento]")
         elif opcao == '4':
             print("Encerrando...")
             break
