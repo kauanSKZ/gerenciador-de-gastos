@@ -69,11 +69,11 @@ def listar_gastos():
         print("\n=== LISTA DE GASTOS (SUPABASE) ===")
 
         for gasto in gastos:
-            print(
-                f"ID: {gasto['id']} | "
-                f"Descrição: {gasto['descricao']} | "
-                f"Valor: R$ {gasto['valor']}"
-            )
+    print(
+        f"ID: {gasto['id']} | "
+        f"Descrição: {gasto['descricao']} | "
+        f"Valor: R$ {gasto['valor']}"
+    )
 
         print("==============================\n")
 
