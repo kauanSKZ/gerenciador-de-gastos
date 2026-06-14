@@ -139,7 +139,7 @@ def menu():
             print("Encerrando...")
             break
         else:
-    print("Opção inválida.")
+            print("Opção inválida.")
 
 
 if __name__ == "__main__":
