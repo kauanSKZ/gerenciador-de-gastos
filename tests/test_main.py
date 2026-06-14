@@ -1,4 +1,4 @@
-from unittest.mock import patch
+from unittest.mock import patch, MagicMock
 import pytest
 import os
 import src.main as app
@@ -28,9 +28,18 @@ def gerenciar_arquivo_teste():
         os.remove("test_gastos.json")
 
 
-def test_caminho_feliz_adicionar_gasto():
+@patch("src.main.supabase")
+def test_caminho_feliz_adicionar_gasto(mock_supabase):
+    mock_execute = MagicMock()
+    mock_supabase.table.return_value.insert.return_value.execute.return_value = (
+        mock_execute
+    )
+
     assert app.adicionar_gasto("Internet", 100.0) is True
-    assert len(app.carregar_gastos()) == 1
+    mock_supabase.table.assert_called_with("gastos")
+    mock_supabase.table.return_value.insert.assert_called_with(
+        {"descricao": "Internet", "valor": 100.0}
+    )
 
 
 def test_entrada_invalida_valor_negativo():
@@ -38,5 +47,12 @@ def test_entrada_invalida_valor_negativo():
         app.adicionar_gasto("Erro", -50.0)
 
 
-def test_caso_limite_soma_vazia():
+@patch("src.main.supabase")
+def test_caso_limite_soma_vazia(mock_supabase):
+    mock_response = MagicMock()
+    mock_response.data = []
+    mock_supabase.table.return_value.select.return_value.execute.return_value = (
+        mock_response
+    )
+
     assert app.calcular_total() == 0
