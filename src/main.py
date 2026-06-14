@@ -56,6 +56,7 @@ def obter_cotacao_dolar():
         return None
 
 
+feature/listar-gastos-banco
 def listar_gastos():
     try:
         resposta = supabase.table("gastos").select("*").execute()
@@ -77,6 +78,24 @@ def listar_gastos():
     except Exception as e:
         print(f"Erro ao buscar gastos: {e}")
 
+def filtrar_gastos_altos(valor_limite):
+    gastos = carregar_gastos()
+
+    encontrados = False
+
+    print(f"\n--- GASTOS ACIMA DE R$ {valor_limite:.2f} ---")
+
+    for gasto in gastos:
+        if gasto["valor"] > valor_limite:
+            print(
+                f"{gasto['descricao']} - R$ {gasto['valor']:.2f}"
+            )
+            encontrados = True
+
+    if not encontrados:
+        print("Nenhum gasto encontrado.")
+main
+
 
 def menu():
     while True:
@@ -84,7 +103,8 @@ def menu():
         print("1. Adicionar Novo Gasto")
         print("2. Listar Todos os Gastos")
         print("3. Exibir Total Acumulado")
-        print("4. Sair")
+        print("4. Filtrar Gastos Altos")
+        print("5. Sair")
         opcao = input("\nEscolha uma opção: ")
 
         if opcao == '1':
@@ -106,11 +126,16 @@ def menu():
                       f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
-        elif opcao == '4':
+        elif opcao == "4":
+            valor = float(
+                input("Mostrar gastos acima de R$: ")
+            )
+
+            filtrar_gastos_altos(valor)
+
+        elif opcao == "5":
             print("Encerrando...")
             break
-        else:
-            print(" Opção inválida.")
 
 
 if __name__ == "__main__":
