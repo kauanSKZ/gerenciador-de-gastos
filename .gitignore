@@ -5,3 +5,4 @@ __pycache__/
 venv/
 gastos.json
 test_gastos.json
+.env
