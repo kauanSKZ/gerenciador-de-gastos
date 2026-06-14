@@ -12,3 +12,19 @@ if not url or not key:
 
 supabase: Client = create_client(url, key)
 print("Conexão com o Supabase configurada com sucesso!")
+
+def criar_gasto(descricao: str, valor: float):
+    """
+    Insere um novo gasto na tabela 'gastos' do Supabase.
+    """
+    try:
+        dados = {
+            "descricao": descricao,
+            "valor": valor
+        }
+        resposta = supabase.table("gastos").insert(dados).execute()
+        print("\nGasto salvo com sucesso no banco de dados!")
+        return resposta.data
+    except Exception as e:
+        print(f"\nErro ao salvar gasto no Supabase: {e}")
+        return 
