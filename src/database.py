@@ -8,10 +8,14 @@ url: str = os.environ.get("SUPABASE_URL")
 key: str = os.environ.get("SUPABASE_KEY")
 
 if not url or not key:
-    raise ValueError("Erro: As variáveis de ambiente SUPABASE_URL e SUPABASE_KEY não foram encontradas no arquivo .env!")
+    raise ValueError(
+        "Erro: As variáveis de ambiente SUPABASE_URL e SUPABASE_KEY "
+        "não foram encontradas no arquivo .env!"
+    )
 
 supabase: Client = create_client(url, key)
 print("Conexão com o Supabase configurada com sucesso!")
+
 
 def criar_gasto(descricao: str, valor: float):
     """
@@ -27,4 +31,4 @@ def criar_gasto(descricao: str, valor: float):
         return resposta.data
     except Exception as e:
         print(f"\nErro ao salvar gasto no Supabase: {e}")
-        return 
+        return None
