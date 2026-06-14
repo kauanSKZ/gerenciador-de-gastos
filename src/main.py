@@ -56,7 +56,7 @@ def obter_cotacao_dolar():
         return None
 
 
-feature/listar-gastos-banco
+
 def listar_gastos():
     try:
         resposta = supabase.table("gastos").select("*").execute()
@@ -136,6 +136,8 @@ def menu():
         elif opcao == "5":
             print("Encerrando...")
             break
+        else:
+    print("Opção inválida.")
 
 
 if __name__ == "__main__":
