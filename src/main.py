@@ -1,7 +1,10 @@
 import requests
 import json
 import os
-from database import supabase
+try:
+    from src.database import supabase
+except ImportError:
+    from database import supabase
 
 __version__ = "1.0.0"
 ARQUIVO_DADOS = "gastos.json"
@@ -112,3 +115,4 @@ def menu():
 
 if __name__ == "__main__":
     menu()
+    
