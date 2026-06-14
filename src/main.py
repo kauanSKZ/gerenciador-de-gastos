@@ -128,16 +128,16 @@ def menu():
                       f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
-         elif opcao == "4":
-    valor = float(input("Mostrar gastos acima de R$: "))
-    filtrar_gastos_altos(valor)
+        elif opcao == "4":
+            valor = float(input("Mostrar gastos acima de R$: "))
+            filtrar_gastos_altos(valor)
 
-elif opcao == "5":
-    print("Encerrando...")
-    break
+        elif opcao == "5":
+            print("Encerrando...")
+            break
 
-else:
-    print("Opção inválida.")
+        else:
+            print("Opção inválida.")
 
 
 if _name_ == "_main_":
