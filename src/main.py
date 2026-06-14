@@ -47,6 +47,7 @@ def obter_cotacao_dolar():
     except Exception:
         return None
 
+
 def filtrar_gastos_altos(valor_limite):
     gastos = carregar_gastos()
 
@@ -64,13 +65,15 @@ def filtrar_gastos_altos(valor_limite):
     if not encontrados:
         print("Nenhum gasto encontrado.")
 
+
 def menu():
     while True:
         print(f"\n=== GERENCIADOR DE GASTOS v{__version__}===")
         print("1. Adicionar Novo Gasto")
         print("2. Listar Todos os Gastos")
         print("3. Exibir Total Acumulado")
-        print("4. Sair")
+        print("4. Filtrar Gastos Altos")
+        print("5. Sair")
         opcao = input("\nEscolha uma opção: ")
         if opcao == '1':
             desc = input("Descrição do gasto: ")
@@ -96,16 +99,16 @@ def menu():
                       f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
-      elif opcao == "4":
-    valor = float(
-        input("Mostrar gastos acima de R$: ")
-    )
+        elif opcao == "4":
+            valor = float(
+                input("Mostrar gastos acima de R$: ")
+            )
 
-    filtrar_gastos_altos(valor)
+            filtrar_gastos_altos(valor)
 
-elif opcao == "5":
-    print("Encerrando...")
-    break
+        elif opcao == "5":
+            print("Encerrando...")
+            break
 
 
 if __name__ == "__main__":
