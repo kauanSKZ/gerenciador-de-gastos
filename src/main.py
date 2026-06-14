@@ -135,9 +135,11 @@ def menu():
         elif opcao == "5":
             print("Encerrando...")
             break
+
         else:
             print(" Opção inválida.")
 
 
-if __name__ == "__main__":
+if _name_ == "_main_":
     menu()
+
