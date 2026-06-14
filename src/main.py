@@ -27,8 +27,10 @@ def adicionar_gasto(descricao, valor):
         raise ValueError("A descrição não pode estar vazia.")
     if valor <= 0:
         raise ValueError("O valor deve ser maior que zero.")
-    
-    supabase.table("gastos").insert({"descricao": descricao, "valor": valor}).execute()
+
+    supabase.table("gastos").insert(
+        {"descricao": descricao, "valor": valor}
+    ).execute()
     return True
 
 
@@ -40,7 +42,9 @@ def calcular_total():
 
 def obter_cotacao_dolar():
     try:
-        resposta = requests.get("https://economia.awesomeapi.com.br/last/USD-BRL")
+        resposta = requests.get(
+            "https://economia.awesomeapi.com.br/last/USD-BRL"
+        )
         resposta.raise_for_status()
         dados = resposta.json()
         cotacao = float(dados["USDBRL"]["bid"])
@@ -52,7 +56,7 @@ def obter_cotacao_dolar():
 def listar_gastos():
     try:
         resposta = supabase.table("gastos").select("*").execute()
-        gastos = resposta.data 
+        gastos = resposta.data
 
         if not gastos:
             print("Nenhum gasto cadastrado no banco de dados.")
@@ -60,7 +64,11 @@ def listar_gastos():
 
         print("\n=== LISTA DE GASTOS (SUPABASE) ===")
         for gasto in gastos:
-            print(f"ID: {gasto['id']} | Descrição: {gasto['descricao']} | Valor: R$ {gasto['valor']}")
+            print(
+                f"ID: {gasto['id']} | "
+                f"Descrição: {gasto['descricao']} | "
+                f"Valor: R$ {gasto['valor']}"
+            )
         print("==================================\n")
 
     except Exception as e:
@@ -75,21 +83,15 @@ def menu():
         print("3. Exibir Total Acumulado")
         print("4. Sair")
         opcao = input("\nEscolha uma opção: ")
-        
+
         if opcao == '1':
             desc = input("Descrição do gasto: ")
             try:
                 val = float(input("Valor (ex: 50.25): R$ "))
                 adicionar_gasto(desc, val)
                 print("Gasto registrado!")
-            except ValueError as e:
+            except ValueError:
                 print("Valor inválido.")
-        elif opcao == '2':
-            listar_gastos()
-        elif opcao == '4':
-            print("A sair do sistema...")
-            break
-                
         elif opcao == '2':
             listar_gastos()
         elif opcao == '3':
@@ -101,11 +103,9 @@ def menu():
                       f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
-                
         elif opcao == '4':
             print("Encerrando...")
             break
-            
         else:
             print(" Opção inválida.")
 
