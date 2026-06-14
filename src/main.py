@@ -96,7 +96,7 @@ def filtrar_gastos_altos(valor_limite):
 
     if not encontrados:
         print("Nenhum gasto encontrado.")
-main
+
 
 
 def menu():
