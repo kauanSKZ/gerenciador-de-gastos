@@ -47,6 +47,22 @@ def obter_cotacao_dolar():
     except Exception:
         return None
 
+def filtrar_gastos_altos(valor_limite):
+    gastos = carregar_gastos()
+
+    encontrados = False
+
+    print(f"\n--- GASTOS ACIMA DE R$ {valor_limite:.2f} ---")
+
+    for gasto in gastos:
+        if gasto["valor"] > valor_limite:
+            print(
+                f"{gasto['descricao']} - R$ {gasto['valor']:.2f}"
+            )
+            encontrados = True
+
+    if not encontrados:
+        print("Nenhum gasto encontrado.")
 
 def menu():
     while True:
@@ -80,11 +96,16 @@ def menu():
                       f"(Cotação: R$ {cotacao:.2f})")
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
-        elif opcao == '4':
-            print("Encerrando...")
-            break
-        else:
-            print(" Opção inválida.")
+      elif opcao == "4":
+    valor = float(
+        input("Mostrar gastos acima de R$: ")
+    )
+
+    filtrar_gastos_altos(valor)
+
+elif opcao == "5":
+    print("Encerrando...")
+    break
 
 
 if __name__ == "__main__":
