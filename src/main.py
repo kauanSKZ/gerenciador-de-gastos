@@ -56,7 +56,6 @@ def obter_cotacao_dolar():
         return None
 
 
-
 def listar_gastos():
     try:
         resposta = supabase.table("gastos").select("*").execute()
@@ -80,6 +79,7 @@ def listar_gastos():
     except Exception as e:
         print(f"Erro ao buscar gastos: {e}")
 
+
 def filtrar_gastos_altos(valor_limite):
     gastos = carregar_gastos()
 
@@ -96,7 +96,6 @@ def filtrar_gastos_altos(valor_limite):
 
     if not encontrados:
         print("Nenhum gasto encontrado.")
-
 
 
 def menu():
@@ -129,15 +128,16 @@ def menu():
             else:
                 print(" [Aviso: Cotação do dólar indisponível no momento]")
         elif opcao == "4":
-            valor = float(input("Mostrar gastos acima de R$: "))
+            valor = float(
+                input("Mostrar gastos acima de R$: ")
+            )
             filtrar_gastos_altos(valor)
-
         elif opcao == "5":
             print("Encerrando...")
             break
 
         else:
-            print("Opção inválida.")
+            print(" Opção inválida.")
 
 
 if _name_ == "_main_":
