@@ -67,13 +67,15 @@ def listar_gastos():
             return
 
         print("\n=== LISTA DE GASTOS (SUPABASE) ===")
+
         for gasto in gastos:
             print(
                 f"ID: {gasto['id']} | "
                 f"Descrição: {gasto['descricao']} | "
                 f"Valor: R$ {gasto['valor']}"
             )
-        print("==================================\n")
+
+        print("==============================\n")
 
     except Exception as e:
         print(f"Erro ao buscar gastos: {e}")
