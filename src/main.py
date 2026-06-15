@@ -85,10 +85,11 @@ def filtrar_gastos_altos(valor_limite: float):
         resposta = supabase.table("gastos").select("*").gt(
             "valor", valor_limite
         ).execute()
-        gastos_filtrados = respuesta.data
+        gastos_filtrados = resposta.data
 
         if not gastos_filtrados:
-            print(f"Nenhum gasto cadastrado acima de R$ {valor_limite:.2f}")
+            print(f"Nenhum gasto cadastrado acima de R$
+            {valor_limite:.2f}")
             return
 
         print(f"\n--- GASTOS ACIMA DE R$ {valor_limite:.2f} ---")
