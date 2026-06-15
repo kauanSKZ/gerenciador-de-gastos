@@ -1,6 +1,6 @@
 # Gerenciador de Gastos Pessoais CLI
 
-**Autor:** Kauan Rodrigues da Silva, Matheus Pereira, Miguel Oliveira, Iago Tavares e Gabriel Barbosa
+**Autor:** Kauan Rodrigues da Silva, Matheus Pereira, Miguel Oliveira, Iago Santos e Gabriel Barbosa
 **Disciplina:** Bootcamp II | **Versão:** 2.0.0 (Etapa Final - Banco de Dados na Nuvem)  
 **Repositório:** [https://github.com/kauanSKZ/gerenciador-de-gastos](https://github.com/kauanSKZ/gerenciador-de-gastos)
 
@@ -23,7 +23,7 @@ O planejamento e a execução do projeto seguiram metodologias ágeis de desenvo
 * **Kauan Rodrigues (`@kauanSKZ`)** - Responsável pela Infraestrutura e modelagem da tabela no Supabase, configuração inicial do SDK e gerenciamento seguro de Variáveis de Ambiente (Issue #3).
 * **[Matheus Pereira] (`Matheus-Pereira1`)** - Responsável pela migração técnica da função de cadastro/escrita de novos gastos diretamente na tabela na nuvem (Issue #4).
 * **[Miguel Oliveira] (`miguelDiniz-dev`)** - Responsável pela migração técnica da função de listagem/leitura do histórico de gastos em tempo real do banco de dados (Issue #5).
-* **[Iago Tavares] (`iagotavares-coder`)** - Responsável pela atualização e manutenção da esteira de testes automatizados com Pytest adequando-os à nova estrutura de dados (Issue #6).
+* **[Iago Santos] (`iagotavares-coder`)** - Responsável pela atualização e manutenção da esteira de testes automatizados com Pytest adequando-os à nova estrutura de dados (Issue #6).
 * **Gabriel Barbosa] (`GabrielGB-markerting`)** - Responsável pelo desenvolvimento da nova funcionalidade de Filtro Avançado para consultas condicionais no banco (Issue #7).
 
 ---
