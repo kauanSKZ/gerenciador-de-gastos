@@ -1,4 +1,4 @@
-from database import supabase
+from src.database import supabase
 
 
 def obter_cotacao_dolar():
