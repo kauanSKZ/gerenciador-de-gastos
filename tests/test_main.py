@@ -31,9 +31,8 @@ def gerenciar_arquivo_teste():
 @patch("src.main.supabase")
 def test_caminho_feliz_adicionar_gasto(mock_supabase):
     mock_execute = MagicMock()
-    mock_supabase.table.return_value.insert.return_value.execute.return_value = (
-        mock_execute
-    )
+    mock_insert = mock_supabase.table.return_value.insert.return_value
+    mock_insert.execute.return_value = mock_execute
 
     assert app.adicionar_gasto("Internet", 100.0) is True
     mock_supabase.table.assert_called_with("gastos")
@@ -50,9 +49,8 @@ def test_entrada_invalida_valor_negativo():
 @patch("src.main.supabase")
 def test_caso_limite_soma_vazia(mock_supabase):
     mock_response = MagicMock()
+    mock_response = MagicMock()
     mock_response.data = []
-    mock_supabase.table.return_value.select.return_value.execute.return_value = (
-        mock_response
-    )
-
+    mock_select = mock_supabase.table.return_value.select.return_value
+    mock_select.execute.return_value = mock_response
     assert app.calcular_total() == 0
